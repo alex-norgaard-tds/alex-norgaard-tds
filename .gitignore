@@ -1,0 +1,5 @@
+*.py[cod] # all python bytecode/generated files
+.venv/
+
+# ruff
+.ruff_cache/
