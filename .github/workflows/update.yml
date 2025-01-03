@@ -2,7 +2,7 @@ name: Update meta-repository
 
 on:
   schedule:
-    - cron: "0 */1 * * *"
+    - cron: "15 */1 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -35,9 +35,10 @@ jobs:
 
       - name: Conditionally revert previous commit
         run: |
-          if [[ "$(git show -s --format '%ae' HEAD)" == *"github-actions"* ]]; then
+          if [[ "$(git show -s --format='%ae' HEAD)" == *"github-actions"* ]]; then
             git reset --hard HEAD^;
           fi
+
       - name: Commit and push changes
         run: |
           git config user.name github-actions[bot]
