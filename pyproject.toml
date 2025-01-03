@@ -131,5 +131,5 @@ inline-quotes = "double"
 
 [tool.pyright]
 useLibraryCodeForTypes = true
-typeCheckingMode = "basic"
+typeCheckingMode = "strict"
 pythonVersion = "3.13"

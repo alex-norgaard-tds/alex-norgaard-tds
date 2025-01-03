@@ -1,13 +1,21 @@
+from __future__ import annotations
+
 import datetime
 import pathlib
 import re
+from typing import TYPE_CHECKING
 
-import feedparser
+import feedparser  # pyright: ignore[reportMissingTypeStubs]
+
+if TYPE_CHECKING:
+    from typing import Any
 
 DATETIME_REGEX = re.compile(r"\#\#DATETIME\b")
 NEWS_REGEX = re.compile(r"\#\#SKY\b")
+
 TEMPLATE_FILE = pathlib.Path("README.tpl.md")
 README_FILE = pathlib.Path("README.md")
+
 NEWS_URL = "https://feeds.skynews.com/feeds/rss/uk.xml"
 
 if not TEMPLATE_FILE.exists():
@@ -30,11 +38,11 @@ def generate_dt_content(current_content: str) -> str:
 
 
 def generate_news_content(current_content: str) -> str:
-    feed = feedparser.parse(NEWS_URL)
+    feed: dict[str, Any] = feedparser.parse(NEWS_URL)  # pyright: ignore[reportUnknownMemberType,reportUnknownVariableType] # upstream lack of typing
 
-    top_headline = feed["entries"][0]
-    title = top_headline["title"]
-    url = top_headline["links"][0]["href"]
+    top_headline: dict[str, Any] = feed["entries"][0]  # pyright: ignore[reportUnknownMemberType,reportUnknownVariableType] # upstream lack of typing
+    title: str = top_headline["title"]  # pyright: ignore[reportUnknownMemberType,reportUnknownVariableType] # upstream lack of typing
+    url: str = top_headline["links"][0]["href"]  # pyright: ignore[reportUnknownMemberType,reportUnknownVariableType] # upstream lack of typing
 
     resolved = f"[{title}]({url})"
 
