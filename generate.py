@@ -12,9 +12,11 @@ if TYPE_CHECKING:
 
 DATETIME_REGEX = re.compile(r"\#\#DATETIME\b")
 NEWS_REGEX = re.compile(r"\#\#SKY\b")
+LICENSE_YEAR_REGEX = re.compile(r"\d{4}")  # ensure we only override first occurrence
 
 TEMPLATE_FILE = pathlib.Path("README.tpl.md")
 README_FILE = pathlib.Path("README.md")
+LICENSE_FILE = pathlib.Path("LICENSE")
 
 NEWS_URL = "https://feeds.skynews.com/feeds/rss/uk.xml"
 
@@ -49,8 +51,15 @@ def generate_news_content(current_content: str) -> str:
     return NEWS_REGEX.sub(resolved, current_content)
 
 
+def handle_license() -> None:
+    content = LICENSE_FILE.read_text()
+    new_content = LICENSE_YEAR_REGEX.sub(datetime.datetime.now(datetime.UTC).strftime("%Y"), content, count=1)
+    LICENSE_FILE.write_text(new_content)
+
+
 if __name__ == "__main__":
     content = TEMPLATE_FILE.read_text(encoding="utf8")
     after_dt = generate_dt_content(content)
     after_news = generate_news_content(after_dt)
     README_FILE.write_text(after_news, encoding="utf8")
+    handle_license()  # we handle the license file differently to only open it once unless the readme which would be 2

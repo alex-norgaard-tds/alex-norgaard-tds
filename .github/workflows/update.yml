@@ -29,11 +29,11 @@ jobs:
         run: uv python install
 
       - run: |
-          uv sync
+          uv sync --no-dev
 
       - name: Perform edit and replacements
         run: |
-          uv run python readme.py
+          uv run python generate.py
 
       - name: Conditionally revert previous commit
         run: |
