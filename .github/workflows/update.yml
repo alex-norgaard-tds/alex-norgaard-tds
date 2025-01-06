@@ -21,6 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Conditionally revert previous commit
+        run: |
+          if [[ "$(git show -s --format='%ae' HEAD)" == *"github-actions"* ]]; then
+            git reset --hard HEAD^;
+          fi
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
@@ -33,12 +39,6 @@ jobs:
       - name: Perform edit and replacements
         run: |
           uv run python generate.py
-
-      - name: Conditionally revert previous commit
-        run: |
-          if [[ "$(git show -s --format='%ae' HEAD)" == *"github-actions"* ]]; then
-            git reset --hard HEAD^;
-          fi
 
       - name: Commit and push changes
         run: |
