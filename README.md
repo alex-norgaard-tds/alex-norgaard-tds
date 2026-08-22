@@ -6,7 +6,7 @@ DevOps Engineer extraordinaire - or so I like to believe.
 I like working with Python 🐍, Docker 🐳 and automation 🧩 in general.
 
 Since I like Python and automation, here's a silly little project to show it off:-  
-This file was last generated automatically on the `3rd of January 2025 at 15:38 (UTC)`  
+This file was last generated automatically on the `22nd of August 2026 at 22:39 (UTC)`  
 (it allegedly updates [every hour, on the 15th minute](.github/workflows/update.yml#L5))
 
 <details>
@@ -17,6 +17,6 @@ Well, GitHub Actions <a href="https://docs.github.com/en/actions/writing-workflo
 </details>  
 
 The current headline from Sky News is the following:  
-[Health warnings and travel disruptions as cold snap hits Britain](https://news.sky.com/story/uk-weather-temperatures-plunge-to-minus-8c-as-snow-and-ice-warnings-in-place-over-weekend-13283043)
+[The UK has been burning this summer - and things could get much worse](https://news.sky.com/story/we-have-never-seen-anything-like-this-summer-how-wildfire-threat-in-uk-is-escalating-dramatically-13575380)
 
 Feel free to reach out if you want to know anything else!
